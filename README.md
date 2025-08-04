@@ -1,14 +1,19 @@
-# Freestyle Practice Idea
+# Category Theory Simulation
+
+## Author
+
+[Poom Yimyuean (lebrancconvas)](https://github.com/lebrancconvas)
 
 ## Detail
 
 ### Business Domain or Category
 
-[To be defined - specify the industry or domain this project targets]
+- Functional Programming and Category Theory.
 
 ### Project Description
 
-[To be defined - provide a detailed description of what this project aims to accomplish]
+Mapping the concept between Functional Programming to Category Theory by translating
+TypeScript (or any language) into Category of Type (under the diagram abstraction based on Category Theory).
 
 ### Why
 
@@ -20,7 +25,17 @@
 
 ## Possible Architecture
 
-N/A - Come up with your own design
+### Sketch Concept
+
+![Sketch Concept](docs/Cat_Simu_Sketch.png)
+
+### Tech Stack
+
+- **Front-End**
+  - *Programming Language*
+    - TypeScript
+  - *Framework / Library*
+    - NextJS (built with PNPM)
 
 ---
 *Template for a freestyle idea. Feel free to explore your proof of concept 😁.*
