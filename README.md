@@ -17,7 +17,6 @@ TypeScript (or any language) into Category of Type (under the diagram abstractio
 
 ### Why
 
-[To be defined - explain the motivation, problem being solved, or opportunity being addressed]
 
 ## Overall architecture
 
