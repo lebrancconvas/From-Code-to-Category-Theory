@@ -8,7 +8,7 @@
 
 ### Business Domain or Category
 
-- Functional Programming and Category Theory.
+- Code Editor and Visual.
 
 ### Project Description
 
@@ -17,7 +17,7 @@ TypeScript (or any language) into Category of Type (under the diagram abstractio
 
 ### Why
 
-[To be defined - explain the motivation, problem being solved, or opportunity being addressed]
+I just want to try to map Functional Programming to Theoretical Category Theory.
 
 ## Overall architecture
 
@@ -29,13 +29,30 @@ TypeScript (or any language) into Category of Type (under the diagram abstractio
 
 ![Sketch Concept](docs/Cat_Simu_Sketch.png)
 
+### UI Design
+
+![User Interface Design](docs/UI.png)
+
+### Plan
+
+- Functional Requirement
+  - [ ] Have an editor section and a visual diagram section.
+  - [ ] User can write code (TypeScript for the first version) in the editor section.
+    - [ ] Automatically Generated or Click to generate?
+- Non-Functional Requirement
+  - [ ] Have an option to swap editor section and visual diagram section.
+  - [ ] R E S P O N S I V E     D E S I G N
+  - [ ] P E R F O R M A N C E (like generated time.)
+
 ### Tech Stack
 
 - **Front-End**
   - *Programming Language*
-    - TypeScript
+    - TypeScript: My Best Language Waifu :P
   - *Framework / Library*
-    - NextJS (built with PNPM)
+    - NextJS (built with PNPM): I just want to practice NextJS skill so I decided to use it.
+    - Monaco Editor: For making an editor.
+    - ReactFlow: For making a diagram.
 
 ---
 *Template for a freestyle idea. Feel free to explore your proof of concept 😁.*
