@@ -1,4 +1,4 @@
-# Category Theory Simulation
+# From Code to Category Theory
 
 ## Author
 
