@@ -86,12 +86,50 @@ export function extractFunctionSignatures(code: string, fileName: string = "main
       signatures.push(signature);
     }
     // Arrow Function Declaration.
-    // else if(ts.isVariableDeclaration(node) && node.initializer) {
-    //   if(ts.isArrowFunction(node.initializer)) {
-    //     const name = node.name.getText(sourceFile);
-    //     const sourceTypes =
-    //   }
-    // }
+    else if(ts.isVariableDeclaration(node) && node.initializer) {
+      if(ts.isArrowFunction(node.initializer)) {
+        const name = node.name.getText(sourceFile);
+        const arrowFunction = node.initializer;
+
+
+        const sourceTypes = arrowFunction.parameters.map(param => {
+          if(param.type) {
+            return param.type.getText(sourceFile);
+          } else {
+            try {
+              const type = typeChecker.getTypeAtLocation(param);
+              return typeChecker.typeToString(type);
+            } catch(error) {
+              return "any";
+            }
+          }
+        });
+
+        let returnType = "any";
+        if(arrowFunction.type) {
+          returnType = arrowFunction.type.getText(sourceFile);
+        } else {
+          try {
+            const type = typeChecker.getTypeAtLocation(arrowFunction)
+            const callSignatures = type.getCallSignatures();
+            if(callSignatures.length > 0) {
+              returnType = typeChecker.typeToString(callSignatures[0].getReturnType());
+            }
+          } catch(error) {
+            returnType = "any";
+          }
+        }
+
+        const signature = {
+          name,
+          sourceTypes,
+          returnType
+        };
+
+        signatures.push(signature);
+      }
+
+    }
 
     ts.forEachChild(node, visit);
   }
