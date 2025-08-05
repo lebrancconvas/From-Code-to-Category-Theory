@@ -1,9 +1,15 @@
+import { Editor } from "@/components/Editor"
+import { Visual } from "@/components/Visual"
+
 export default function App() {
   return (
     <>
-      <header>
-        <h1>Cat Simu</h1>
-      </header>
+      <section className="A-Side">
+        <Visual />
+      </section>
+      <section className="B-Side">
+        <Editor />
+      </section>
     </>
   )
 };
