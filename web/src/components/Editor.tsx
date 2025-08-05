@@ -1,5 +1,3 @@
-'use client';
-
 import dynamic from "next/dynamic";
 
 import { OnChange } from "@monaco-editor/react";

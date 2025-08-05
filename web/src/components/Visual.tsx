@@ -1,5 +1,9 @@
-export function Visual() {
+interface VisualProps {
+  code: string;
+};
+
+export function Visual({ code }: VisualProps) {
   return (
-    <h1>Visual</h1>
+    <h1>{ code }</h1>
   )
 };
