@@ -1,0 +1,12 @@
+.panel {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.A-Side {
+  outline: 1px solid green;
+}
+
+.B-Side {
+  outline: 1px solid brown;
+}
