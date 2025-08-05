@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@monaco-editor/react": "^4.7.0",
     "@xyflow/react": "^12.8.2",
     "monaco-editor": "^0.52.2",
     "next": "15.4.5",
