@@ -127,6 +127,30 @@
   overflow: hidden;
   background: white;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+  min-height: 400px;
+  position: relative;
+}
+
+.flow-container .react-flow {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-container .react-flow__viewport {
+  width: 100%;
+  height: 100%;
+}
+
+.flow-container .react-flow__nodes {
+  z-index: 10;
+}
+
+.flow-container .react-flow__edges {
+  z-index: 5;
+}
+
+.flow-container .react-flow__controls {
+  z-index: 15;
 }
 
 footer {

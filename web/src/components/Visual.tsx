@@ -11,6 +11,7 @@ import {
   useEdgesState,
   addEdge,
   Connection,
+  ReactFlowProvider,
 } from '@xyflow/react';
 import { extractFunctionSignatures } from '@/utils/functionSignature';
 
@@ -38,7 +39,7 @@ interface FunctionEdge extends Edge {
   };
 }
 
-export function Visual({ code }: VisualProps) {
+function VisualFlow({ code }: { code: string }) {
   const [nodes, setNodes, onNodesChange] = useNodesState<TypeNode>([]);
   const [edges, setEdges, onEdgesChange] = useEdgesState<FunctionEdge>([]);
 
@@ -80,6 +81,8 @@ export function Visual({ code }: VisualProps) {
                 padding: '10px',
                 minWidth: '120px',
                 textAlign: 'center',
+                fontSize: '14px',
+                fontWeight: 'bold',
               },
             });
           }
@@ -100,6 +103,8 @@ export function Visual({ code }: VisualProps) {
               padding: '10px',
               minWidth: '120px',
               textAlign: 'center',
+              fontSize: '14px',
+              fontWeight: 'bold',
             },
           });
         }
@@ -112,31 +117,62 @@ export function Visual({ code }: VisualProps) {
           const targetNode = typeNodes.get(sig.returnType);
           
           if (sourceNode && targetNode) {
-            functionEdges.push({
-              id: `edge-${edgeId++}`,
-              source: sourceNode.id,
-              target: targetNode.id,
-              type: 'smoothstep',
-              data: { 
-                label: sig.name,
-                functionName: sig.name 
-              },
-              style: {
-                stroke: '#ffd93d',
-                strokeWidth: 3,
-              },
-              labelStyle: {
-                fill: '#ffd93d',
-                fontWeight: 'bold',
-                fontSize: '12px',
-              },
-              labelBgStyle: {
-                fill: '#1a192b',
-                fillOpacity: 0.8,
-              },
-              labelBgPadding: [4, 4],
-              labelBgBorderRadius: 4,
-            });
+            // Check if this is an identity morphism (same source and target)
+            if (sourceType === sig.returnType) {
+              // Create a self-loop (identity morphism)
+              functionEdges.push({
+                id: `edge-${edgeId++}`,
+                source: sourceNode.id,
+                target: sourceNode.id,
+                type: 'smoothstep',
+                data: { 
+                  label: sig.name,
+                  functionName: sig.name 
+                },
+                style: {
+                  stroke: '#ffd93d',
+                  strokeWidth: 3,
+                },
+                labelStyle: {
+                  fill: '#ffd93d',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                },
+                labelBgStyle: {
+                  fill: '#1a192b',
+                  fillOpacity: 0.8,
+                },
+                labelBgPadding: [4, 4],
+                labelBgBorderRadius: 4,
+              });
+            } else {
+              // Create a regular edge between different types
+              functionEdges.push({
+                id: `edge-${edgeId++}`,
+                source: sourceNode.id,
+                target: targetNode.id,
+                type: 'smoothstep',
+                data: { 
+                  label: sig.name,
+                  functionName: sig.name 
+                },
+                style: {
+                  stroke: '#ffd93d',
+                  strokeWidth: 3,
+                },
+                labelStyle: {
+                  fill: '#ffd93d',
+                  fontWeight: 'bold',
+                  fontSize: '12px',
+                },
+                labelBgStyle: {
+                  fill: '#1a192b',
+                  fillOpacity: 0.8,
+                },
+                labelBgPadding: [4, 4],
+                labelBgBorderRadius: 4,
+              });
+            }
           }
         });
       });
@@ -148,14 +184,14 @@ export function Visual({ code }: VisualProps) {
       nodeArray.forEach((node, index) => {
         if (index < nodesPerColumn) {
           // Left column - source types
-          node.position = { x: 100, y: 100 + index * 120 };
+          node.position = { x: 150, y: 100 + index * 120 };
           node.style = {
             ...node.style,
             border: '2px solid #ff6b6b',
           };
         } else {
           // Right column - return types
-          node.position = { x: 500, y: 100 + (index - nodesPerColumn) * 120 };
+          node.position = { x: 550, y: 100 + (index - nodesPerColumn) * 120 };
           node.style = {
             ...node.style,
             border: '2px solid #4ecdc4',
@@ -220,12 +256,25 @@ export function Visual({ code }: VisualProps) {
           onEdgesChange={onEdgesChange}
           onConnect={onConnect}
           fitView
+          fitViewOptions={{ padding: 0.2 }}
+          minZoom={0.1}
+          maxZoom={2}
+          defaultViewport={{ x: 0, y: 0, zoom: 1 }}
           attributionPosition="bottom-left"
+          proOptions={{ hideAttribution: true }}
         >
           <Controls />
           <Background color="#aaa" gap={16} />
         </ReactFlow>
       </div>
     </div>
+  );
+}
+
+export function Visual({ code }: VisualProps) {
+  return (
+    <ReactFlowProvider>
+      <VisualFlow code={code} />
+    </ReactFlowProvider>
   );
 }

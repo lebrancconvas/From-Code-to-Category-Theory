@@ -11,53 +11,6 @@ interface EditorProps {
   onChange: OnChange;
 };
 
-const defaultCode = `// TypeScript Code Examples
-// Functions will be visualized as morphisms in category theory
-
-// Function 1: String to Number
-function stringLength(str: string): number {
-  return str.length;
-}
-
-// Function 2: Number to Boolean
-function isEven(num: number): boolean {
-  return num % 2 === 0;
-}
-
-// Function 3: Multiple parameters
-function addNumbers(a: number, b: number): number {
-  return a + b;
-}
-
-// Function 4: Array transformation
-function doubleArray(nums: number[]): number[] {
-  return nums.map(n => n * 2);
-}
-
-// Function 5: Generic function
-function identity<T>(value: T): T {
-  return value;
-}
-
-// Function 6: Complex types
-interface User {
-  id: number;
-  name: string;
-  email: string;
-}
-
-function getUserName(user: User): string {
-  return user.name;
-}
-
-// Arrow functions are also supported
-const multiply = (a: number, b: number): number => a * b;
-
-const formatMessage = (message: string, prefix: string): string => \`\${prefix}: \${message}\`;
-
-// Try adding your own functions and see the category theory diagram update!
-`;
-
 export function Editor({ value, onChange }: EditorProps) {
   return (
     <div className="editor-container">
@@ -69,7 +22,7 @@ export function Editor({ value, onChange }: EditorProps) {
         height="calc(100% - 80px)"
         language="typescript"
         theme="vs-dark"
-        value={value || defaultCode}
+        value={value}
         onChange={onChange}
         options={{
           fontSize: 14,
