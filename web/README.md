@@ -1,36 +1,115 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Code to Category Theory Visualizer
+
+A web application that converts TypeScript code into category theory diagrams, showing types as objects and functions as morphisms.
+
+## Features
+
+- **Monaco Editor**: Full-featured TypeScript code editor on the right side
+- **ReactFlow Diagram**: Interactive category theory visualization on the left side
+- **Real-time Parsing**: Automatically extracts function signatures and types from TypeScript code
+- **Category Theory Mapping**: 
+  - Types are represented as nodes (objects)
+  - Functions are represented as edges (morphisms)
+  - Source types (domain) are shown on the left
+  - Return types (codomain) are shown on the right
+
+## How It Works
+
+1. **Type Extraction**: The application parses TypeScript code using the TypeScript compiler API
+2. **Function Analysis**: Extracts function names, parameter types, and return types
+3. **Visualization**: Creates a ReactFlow diagram where:
+   - Each unique type becomes a node
+   - Each function becomes an edge connecting source types to return types
+   - Nodes are color-coded (red border for source types, blue border for return types)
+   - Edges are labeled with function names
+
+## Supported Code Patterns
+
+- Function declarations
+- Arrow functions
+- Function expressions
+- Multiple parameters
+- Generic types
+- Interface types
+- Array types
+- Union types
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm
+
+### Installation
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd web
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Development
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```bash
+pnpm run dev --port 7100
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+The application will be available at `http://localhost:7100`
 
-## Learn More
+### Build
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+pnpm run build
+pnpm start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Example Code
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Try this TypeScript code in the editor:
 
-## Deploy on Vercel
+```typescript
+function stringLength(str: string): number {
+  return str.length;
+}
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+function isEven(num: number): boolean {
+  return num % 2 === 0;
+}
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+function addNumbers(a: number, b: number): number {
+  return a + b;
+}
+```
+
+This will create a diagram with:
+- Nodes: `string`, `number`, `boolean`
+- Edges: `stringLength`, `isEven`, `addNumbers`
+
+## Technical Details
+
+- **Frontend**: Next.js 15 with React 19
+- **Editor**: Monaco Editor (VS Code's editor)
+- **Diagram**: ReactFlow for interactive node-based diagrams
+- **Parsing**: TypeScript compiler API for accurate type extraction
+- **Styling**: CSS Grid layout with responsive design
+
+## Architecture
+
+The application follows a simple architecture:
+
+1. **Editor Component**: Monaco Editor for code input
+2. **Visual Component**: ReactFlow diagram for visualization
+3. **Utility Functions**: TypeScript parsing and function signature extraction
+4. **State Management**: React hooks for managing code and diagram state
+
+## Contributing
+
+Feel free to contribute by:
+- Adding support for more TypeScript constructs
+- Improving the diagram layout algorithms
+- Enhancing the visual styling
+- Adding more category theory concepts
+
+## License
+
+This project is open source and available under the MIT License.

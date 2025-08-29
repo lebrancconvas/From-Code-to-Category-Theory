@@ -2,15 +2,131 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 1vw;
-  height: 80vh;
+  height: 100vh;
+  padding: 20px;
+  box-sizing: border-box;
 }
 
 .visual-section {
-  outline: 1px solid green;
+  outline: 1px solid #4ecdc4;
+  border-radius: 8px;
+  padding: 20px;
+  background: #f8f9fa;
+  overflow: hidden;
 }
 
 .editor-section {
-  outline: 1px solid brown;
+  outline: 1px solid #ff6b6b;
+  border-radius: 8px;
+  padding: 20px;
+  background: #2d3748;
+}
+
+.editor-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.editor-container h2 {
+  margin: 0 0 10px 0;
+  color: white;
+  font-size: 24px;
+  text-align: center;
+}
+
+.editor-description {
+  margin: 0 0 20px 0;
+  color: #cbd5e0;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.visual-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.visual-container h2 {
+  margin: 0 0 20px 0;
+  color: #2d3748;
+  font-size: 24px;
+  text-align: center;
+}
+
+.visual-empty {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: #2d3748;
+}
+
+.visual-empty h2 {
+  margin-bottom: 20px;
+  color: #2d3748;
+  font-size: 28px;
+}
+
+.visual-empty p {
+  margin-bottom: 40px;
+  font-size: 18px;
+  color: #718096;
+}
+
+.legend {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  margin-bottom: 20px;
+  padding: 15px;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #2d3748;
+}
+
+.legend-node {
+  width: 20px;
+  height: 20px;
+  border-radius: 4px;
+  border: 2px solid;
+}
+
+.legend-node.source {
+  background: #1a192b;
+  border-color: #ff6b6b;
+}
+
+.legend-node.target {
+  background: #1a192b;
+  border-color: #4ecdc4;
+}
+
+.legend-edge {
+  width: 30px;
+  height: 3px;
+  background: #ffd93d;
+  border-color: #ffd93d;
+}
+
+.flow-container {
+  flex: 1;
+  border-radius: 8px;
+  overflow: hidden;
+  background: white;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
 footer {
@@ -21,5 +137,18 @@ footer {
   width: 100%;
   height: 50px;
   text-align: center;
+  background: white;
+  border-top: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
+footer a {
+  color: #3182ce;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
 }
